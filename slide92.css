@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;500;600;700;900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Chivo Mono", monospace;;
+}
+button{
+    cursor: pointer;
+}
+header{
+    padding: 20px 20px 0 0;
+}
+.shop_cart {
+    display: flex;
+    justify-content: end;
+}
+.shop_cart svg{
+    position: relative;
+}
+#shop_count{
+    color: red;
+    position: absolute;
+    top: 9px;
+    
+}
+/* #main_car{
+    width: 450px;
+} */
+.flex_center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main_container{
+    gap: 100px;
+    height: 100vh;
+}
+.main_container_right h2{
+    color: red;
+    margin: 7px 0px 25px 0;
+}
+.container_right_version button{
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin: 12px 0px;
+}
+.container_right_amount_cart{
+    display: flex;
+    gap: 15px;
+
+}
+.container_right_amount{
+    border: 2px solid black;
+}
+#quantity:focus {
+    outline: none;
+}
+#quantity{
+    height: 20px;
+    border: none;
+    font-size: 20px;
+    width: 40px;
+}
+#minus{
+    margin-left: 10px;
+}
+#plus{
+    margin-right: 10px;
+}
+#minus ,#plus{
+    font-size: 20px;
+    background: none;
+    border: none;
+    height: 20px;
+}
+#add_cart{
+    padding: 5px 50px;
+    width: 250px;
+}
+.container_color_list button img{
+    width: 100px;
+}
+.container_right_amount input{
+    text-align: center ;
+}
+.container_right_amount_cart{
+    display: flex;
+}
+.container_right_describe h4{
+    margin: 10px 0;
+}
+.container_right_describe ul li{
+    margin: 10px 0;
+}
+.color_item.active{
+    border: 1px solid red;
+}
+.version_item.active{
+    border: 1px solid blue;
+}
