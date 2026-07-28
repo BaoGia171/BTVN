@@ -102,7 +102,7 @@ let containerRightVersionHtml = document.querySelector(
 function renderVersion() {
     for (let i = 0; i < shCar.versionSH.length; i++) {
         console.log(i);
-        containerRightVersionHtml.innerHTML += `<button class="version_item" onclick ="button_color(${i},this)" type="button">${shCar.versionSH[i].carVersion} CC</button>`;
+        containerRightVersionHtml.innerHTML += `<button class="version_item" onclick ="button_version(${i},this)" type="button">${shCar.versionSH[i].carVersion} CC</button>`;
     }
 }
 renderVersion();
@@ -111,17 +111,26 @@ const nameCar = document.querySelector("#car_name");
 const priceCar = document.querySelector("#price");
 function button_color(i, buttonClicked) {
     const colorItem = document.querySelectorAll(".color_item");
-    const versionItem = document.querySelectorAll(".version_item");
+    
     for (let i = 0; i < colorItem.length; i++) {
         colorItem[i].classList.remove(`active`);
-        versionItem[i].classList.remove(`active`);
+        
     }
-    // buttonClicked.classList.add(`active`);
-    colorItem[i].classList.add(`active`);
-    versionItem[i].classList.add("active");
+    buttonClicked.classList.add(`active`);
+    
+    
     imgCar.src = shCar.colorSH[i].img;
     nameCar.textContent = shCar.colorSH[i].name;
     priceCar.textContent = shCar.versionSH[i].price;
+}
+
+function button_version(i,buttonClicked){
+    const versionItem = document.querySelectorAll(".version_item");
+    for(let i = 0 ; i<versionItem.length ; i++){
+        versionItem[i].classList.remove(`active`)
+    }
+    buttonClicked.classList.add(`active`)
+    
 }
 
 //tăng giảm số lượng
