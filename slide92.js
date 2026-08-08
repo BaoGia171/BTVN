@@ -27,30 +27,35 @@ let shCar = {
         {
             id: "red_car",
             name: "SH350i 2023 Red",
+            price:  200000000,
             carColor: "./product-2.png",
             img: "./image/img_slide92/product-2.png",
         },
         {
             id: "black_car",
             name: "SH350i 2023 Black",
+            price: 205000000 ,
             carColor: "./product-3.png",
             img: "./image/img_slide92/product-3.png",
         },
         {
             id: "white_car",
             name: "SH350i 2023 White",
+            price: 208000000 ,
             carColor: "./product-1.png",
             img: "./image/img_slide92/product-1.png",
         },
         {
             id: "gray_car",
             name: "SH350i 2023 Gray",
+            price:  210000000,
             carColor: "./product-5.png",
             img: "./image/img_slide92/product-5.png",
         },
         {
             id: "green_car",
             name: "SH350i 2023 Green",
+            price:  22000000,
             carColor: "./product-5.png",
             img: "./image/img_slide92/product-5.png",
         },
@@ -58,28 +63,33 @@ let shCar = {
     versionSH: [
         {
             id: "ver_100",
-            price: "Giá từ: 198.990.000 VNĐ",
+            
             carVersion: 100,
+            versionPrice : 10000000
         },
         {
             id: "ver_120",
-            price: "Giá từ: 199.990.000 VNĐ",
+            
             carVersion: 120,
+            versionPrice : 20000000
         },
         {
             id: "ver_150",
-            price: "Giá từ: 208.990.000 VNĐ",
+            
             carVersion: 150,
+            versionPrice : 35000000
         },
         {
             id: "ver_200",
-            price: "Giá từ: 218.990.000 VNĐ",
+            
             carVersion: 200,
+            versionPrice : 42000000
         },
         {
             id: "ver_300",
-            price: "Giá từ: 228.990.000 VNĐ",
+            
             carVersion: 300,
+            versionPrice : 45000000
         },
     ],
 };
@@ -109,6 +119,7 @@ renderVersion();
 const imgCar = document.querySelector("#main_car");
 const nameCar = document.querySelector("#car_name");
 const priceCar = document.querySelector("#price");
+let colorIndex = 0 
 function button_color(i, buttonClicked) {
     const colorItem = document.querySelectorAll(".color_item");
     
@@ -118,19 +129,24 @@ function button_color(i, buttonClicked) {
     }
     buttonClicked.classList.add(`active`);
     
-    
     imgCar.src = shCar.colorSH[i].img;
     nameCar.textContent = shCar.colorSH[i].name;
-    priceCar.textContent = shCar.versionSH[i].price;
+    colorIndex = i;
+    updatePrice();
+    
 }
 
+// click chọn phiên bản
+// tăng giá theo phiên bản
+let versionIndex = 0
 function button_version(i,buttonClicked){
-    const versionItem = document.querySelectorAll(".version_item");
+    const versionItem = document.querySelectorAll(".version_item")
     for(let i = 0 ; i<versionItem.length ; i++){
         versionItem[i].classList.remove(`active`)
     }
     buttonClicked.classList.add(`active`)
-    
+   versionIndex = i
+   updatePrice();
 }
 
 //tăng giảm số lượng
@@ -149,6 +165,7 @@ minus.addEventListener('click' , function(){
         numberValue = numberValue
     }
     quantity.value = numberValue
+    updatePrice()
 })
 console.log(minus)
 
@@ -158,9 +175,22 @@ plus.addEventListener('click', function(){
     let numberValue = Number(quantity.value)
     numberValue = numberValue + 1
     quantity.value = numberValue
+    updatePrice()
 })
 console.log(plus)
+// lấy ảnh gốc ban đầu
+function firstProduct() {
+    const firstProductBtn = document.querySelector(".color_item")
+    const firstVersionBtn = document.querySelector(".version_item")
+    imgCar.src = shCar.colorSH[0].img
+    nameCar.textContent = shCar.colorSH[0].name
+    
+    firstProductBtn.classList.add("active");
+    firstVersionBtn.classList.add("active");
 
+    updatePrice();
+}
+firstProduct()
 //thêm vào giỏ hàng 
 const buttonCart = document.querySelector("#add_cart")
 const cartCount = document.querySelector("#shop_count")
@@ -175,3 +205,14 @@ buttonCart.addEventListener("click" , function(){
         cartCount.textContent = totalCount
         console.log(totalCount)
 })
+//cập nhật giá gốc + giá phiên bản ,tăng/giảm giá khi +/- số lượng
+function updatePrice() {
+    const total = shCar.colorSH[colorIndex].price + shCar.versionSH[versionIndex].versionPrice
+    const amount = Number(quantity.value)
+    const finalTotal = amount * total
+    priceCar.textContent = finalTotal
+}
+
+
+
+
