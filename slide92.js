@@ -173,7 +173,7 @@ console.log(minus)
 const plus = document.getElementById("plus")
 plus.addEventListener('click', function(){ 
     let numberValue = Number(quantity.value)
-    numberValue = numberValue + 1
+    numberValue += 1
     quantity.value = numberValue
     updatePrice()
 })
@@ -198,13 +198,23 @@ console.log(buttonCart)
 console.log(cartCount)
 
 let totalCount = 0
+let cartList = []
 buttonCart.addEventListener("click" , function(){
     console.log('da click vao gio hang')
     const count = Number(quantity.value)
-        totalCount = count 
+    const donHang = {
+        colorName: shCar.colorSH[colorIndex].name,
+        versionCC: shCar.versionSH[versionIndex].carVersion,
+        amount: count,
+        total: (shCar.colorSH[colorIndex].price + shCar.versionSH[versionIndex].versionPrice) * count
+    }
+     cartList.push(donHang)
+        totalCount += count 
         cartCount.textContent = totalCount
         console.log(totalCount)
+        console.log(cartList)
 })
+
 //cập nhật giá gốc + giá phiên bản ,tăng/giảm giá khi +/- số lượng
 function updatePrice() {
     const total = shCar.colorSH[colorIndex].price + shCar.versionSH[versionIndex].versionPrice
